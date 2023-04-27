@@ -3,7 +3,7 @@ using ProjetoFinalAPI.Models;
 
 namespace ProjetoFinalAPI.Data
 {
-    internal interface IDataContext
+    public interface IDataContext
     {
         DbSet<Product> Products { get; set; }
         DbSet<Stock> Stocks { get; set; }
