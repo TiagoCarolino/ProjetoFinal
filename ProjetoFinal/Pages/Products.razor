@@ -1,0 +1,88 @@
+﻿@page "/products"
+
+@using ProjetoFinalAPI.Models;
+@using Interfaces;
+@using System.Diagnostics;
+
+@inject IWebServiceAPI WebServiceAPI
+@inject NavigationManager NavigationManager
+
+<h1>Products</h1>
+
+@if (ProductsData == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Stock</th>
+                <th>Quantity</th>
+                <th>IsDeleted</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in ProductsData)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Category.ToString()</td>
+                    <td>@product.Stock</td>
+                    <td>@product.QuantityStock</td>
+                    <td>@product.IsDeleted</td>
+                    <td>@product.Price</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="() => DeleteProduct(product.Id)">Delete</button>
+                        <button class="btn btn-primary" @onclick="() => EditProduct(product.Id)">Edit</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<Product> ProductsData { get; set; } = new();
+
+    Product NewProduct { get; set; } = new Product();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var response = await WebServiceAPI.GetProducts();
+            ProductsData = response.Where(p => !p.IsDeleted).ToList();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex);
+            throw;
+        }
+    }
+
+    private async Task DeleteProduct(int id)
+    {
+        try
+        {
+            await WebServiceAPI.DeleteProduct(id);
+            ProductsData.RemoveAll(p => p.Id == id);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex);
+            throw;
+        }
+    }
+
+    private void EditProduct(int id)
+    {
+        NavigationManager.NavigateTo($"/editproduct/{id}");
+    }
+}
