@@ -2,6 +2,7 @@ using ProjetoFinalAPI.Data;
 using MediatR;
 using System.Reflection;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IDataContext, AppDbContext>();
 
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
