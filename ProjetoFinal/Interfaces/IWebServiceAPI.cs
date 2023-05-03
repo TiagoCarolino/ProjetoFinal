@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ProjetoFinalAPI.Models;
+﻿using ProjetoFinalAPI.Models;
 using Refit;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ProjetoFinal.Interfaces
 {

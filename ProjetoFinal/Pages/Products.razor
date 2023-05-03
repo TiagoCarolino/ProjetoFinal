@@ -7,7 +7,7 @@
 @inject IWebServiceAPI WebServiceAPI
 @inject NavigationManager NavigationManager
 
-<h1>Products</h1>
+<h3>Products</h3>
 
 @if (ProductsData == null)
 {
@@ -21,8 +21,6 @@ else
                 <th>Name</th>
                 <th>Description</th>
                 <th>Category</th>
-                <th>Stock</th>
-                <th>Quantity</th>
                 <th>IsDeleted</th>
                 <th>Price</th>
             </tr>
@@ -33,9 +31,7 @@ else
                 <tr>
                     <td>@product.Name</td>
                     <td>@product.Description</td>
-                    <td>@product.Category.ToString()</td>
-                    <td>@product.Stock</td>
-                    <td>@product.QuantityStock</td>
+                    <td>@product.Category</td>
                     <td>@product.IsDeleted</td>
                     <td>@product.Price</td>
                     <td>
@@ -49,6 +45,7 @@ else
 }
 
 @code {
+
     List<Product> ProductsData { get; set; } = new();
 
     Product NewProduct { get; set; } = new Product();
@@ -66,7 +63,6 @@ else
             throw;
         }
     }
-
     private async Task DeleteProduct(int id)
     {
         try
@@ -80,7 +76,6 @@ else
             throw;
         }
     }
-
     private void EditProduct(int id)
     {
         NavigationManager.NavigateTo($"/editproduct/{id}");
