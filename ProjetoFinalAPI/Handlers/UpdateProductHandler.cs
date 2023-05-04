@@ -22,11 +22,12 @@ namespace ProjetoFinalAPI.Handlers
             }
             else
             {
-                product.Name = request.Product.Name;
-                product.Description = request.Product.Description;
+                //product.Name = request.Product.Name;
+                //product.Description = request.Product.Description;
                 product.Category = request.Product.Category;
-                product.Price = request.Product.Price;
-                product.IsDeleted = request.Product.IsDeleted;
+                //product.QuantityStock = request.Product.QuantityStock;
+                //product.Price = request.Product.Price;
+                //product.IsDeleted = request.Product.IsDeleted;
 
                 await _dataContext.SaveChangesAsync(cancellationToken);
 

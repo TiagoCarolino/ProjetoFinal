@@ -9,7 +9,6 @@ namespace ProjetoFinalAPI.Models
         public string? Name { get; set; }
         public string? Description { get; set; }
         public ProductsCategory Category { get; set; }
-        public bool Stock { get; set; }
         public int QuantityStock { get; set; }
 
         [Column(TypeName = "decimal(6,2)")]
@@ -21,6 +20,5 @@ namespace ProjetoFinalAPI.Models
     {
         Smartphone,
         Laptops
-        
     }
 }
