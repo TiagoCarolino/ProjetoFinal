@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjetoFinalAPI.Models
 {
@@ -19,9 +20,7 @@ namespace ProjetoFinalAPI.Models
     public enum ProductsCategory
     {
         Smartphone,
-        Laptops,
-        TVs,
-        Audio,
-        Accessories
+        Laptops
+        
     }
 }

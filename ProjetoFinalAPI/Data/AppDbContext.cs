@@ -6,6 +6,7 @@ namespace ProjetoFinalAPI.Data
 {
     public class AppDbContext : DbContext , IDataContext
     {
+        public DbSet<Account> Accounts {get; set;}
         public DbSet<Product> Products { get; set; }
         public DbSet<Stock> Stocks { get; set; }
 
