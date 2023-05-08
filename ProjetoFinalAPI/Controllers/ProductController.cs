@@ -73,5 +73,13 @@ namespace ProjetoFinalAPI.Controllers
 
             return Ok();
         }
+
+        [HttpGet("stockstatus")]
+        public async Task<IActionResult> GetStockStatus()
+        {
+            var result = await Mediator.Send(new GetStockStatusQuery());
+
+            return Ok(result);
+        }
     }
 }
