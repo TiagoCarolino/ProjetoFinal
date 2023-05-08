@@ -54,5 +54,24 @@ namespace ProjetoFinalAPI.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet ("/categories")]
+            public async Task<IActionResult> GetCategories()
+        {
+            var result = await Mediator.Send(new GetCategoriesQuery());
+            return Ok(result);
+        }
+
+        [HttpPost("stocks")]
+        public async Task<IActionResult> AddStock([FromBody] Stock stock)
+        {
+            await Mediator.Send(new AddStockCommand
+            {
+                Stock = stock
+
+            });
+
+            return Ok();
+        }
     }
 }

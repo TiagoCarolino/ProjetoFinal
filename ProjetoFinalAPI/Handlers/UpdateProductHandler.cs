@@ -24,12 +24,19 @@ namespace ProjetoFinalAPI.Handlers
             {
                 product.Name = request.Product.Name;
                 product.Description = request.Product.Description;
-                product.Category = request.Product.Category;
-                product.QuantityStock = request.Product.QuantityStock;
+                product.CategoryId = request.Product.CategoryId;
                 product.Price = request.Product.Price;
                 product.IsDeleted = request.Product.IsDeleted;
+                try
+                {
+                 await _dataContext.SaveChangesAsync(cancellationToken);
 
-                await _dataContext.SaveChangesAsync(cancellationToken);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
 
             }
             return product;

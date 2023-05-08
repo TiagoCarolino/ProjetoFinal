@@ -1,0 +1,25 @@
+﻿@page "/createorder"
+
+@using ProjetoFinal.Interfaces
+@using ProjetoFinalAPI.Models
+@inject IWebServiceAPI WebServiceAPI
+
+
+<h3>AddOrder</h3>
+
+<EditForm Model="OrderModel" OnValidSubmit="OnCreateNewOrder" >
+    <div class="mb-3">
+        <label for="name" class="form-label">Product ID:</label>
+        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Product Id" @bind-value="OrderModel.IdProduct" />
+    </div>
+    <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity:</label>
+        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Quantity" @bind-value="OrderModel.QuantityOrder" />
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Created At:</label>
+        <input type="datetime" class="form-control" id="exampleFormControlInput1" placeholder="Created At" @bind-value="OrderModel.OrderCreatedAt" />
+    </div>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Create</button>
+    </EditForm>

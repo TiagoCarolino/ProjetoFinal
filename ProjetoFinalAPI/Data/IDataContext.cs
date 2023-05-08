@@ -8,6 +8,8 @@ namespace ProjetoFinalAPI.Data
         DbSet<Account> Accounts { get; set; }
         DbSet<Product> Products { get; set; }
         DbSet<Stock> Stocks { get; set; }
+        DbSet<Category> Categories { get; set; }
+        DbSet<Order> Orders { get; set; }
 
         int SaveChanges();
 

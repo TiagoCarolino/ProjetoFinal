@@ -8,17 +8,18 @@ namespace ProjetoFinalAPI.Models
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
-        public ProductsCategory Category { get; set; }
-        public int QuantityStock { get; set; }
+        public int MinimalQuantity { get; set; }
+        public int CategoryId { get; set; }
+
+        [ForeignKey(nameof(Product.CategoryId))]
+        public Category? Category { get; set; }
 
         [Column(TypeName = "decimal(6,2)")]
         public decimal Price { get; set; }
         public bool IsDeleted { get; set; }
+
+        
     }
 
-    public enum ProductsCategory
-    {
-        Smartphone,
-        Laptops
-    }
+    
 }

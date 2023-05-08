@@ -35,7 +35,7 @@ namespace ProjetoFinalAPI.Handlers
                 Name = x.Name,
                 Description = x.Description,
                 IsDeleted = x.IsDeleted,
-                Category = x.Category,
+                CategoryId= x.CategoryId,
                 Price = x.Price
             }).ToList();
 

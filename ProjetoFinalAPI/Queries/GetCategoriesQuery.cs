@@ -3,7 +3,6 @@ using ProjetoFinalAPI.Models;
 
 namespace ProjetoFinalAPI.Queries
 {
-    public record GetDashboardQuery : IRequest<DashBoard>
-    {
-    }
+    public record GetCategoriesQuery : IRequest<List<Category>>;
+   
 }

@@ -18,8 +18,17 @@ namespace ProjetoFinal.Interfaces
         [Put("/product-edit/{id}")]
         public Task<Product> UpdateProduct([FromBody] Product updatedProduct, int id);
 
-
         [Delete("/products/{id}")]
         public Task DeleteProduct(int id);
+
+        [Get("/categories")]
+        public Task<List<Category>> GetCategories();
+
+        [Post("/orders")]
+        public Task<Order> AddOrder([Body] Order order);
+
+        [Post("/stocks")]
+        public Task AddStock([Body] Stock stock);
+
     }
 }

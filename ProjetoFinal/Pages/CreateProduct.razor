@@ -3,7 +3,6 @@
 @using ProjetoFinalAPI.Models;
 @using Interfaces;
 @using System.Diagnostics;
-@using ProjetoFinal.Services;
 
 @inject IWebServiceAPI WebServiceAPI
 @inject NavigationManager NavigationManager
@@ -23,16 +22,16 @@
         <label for="price">Price:</label>
         <InputNumber id="price" class="form-control" @bind-Value="@NewProduct.Price" step="0.01" />
     </div>
-
     <div class="form-group">
-    <label for="category">Category:</label>
-    <br />
-    <select bind="Category">
-        @foreach (var o in Options)
-        {
-            <option value="@o.Value">@o.Value</option>
-        }
-    </select>
+        <label for="categories">Category:</label>
+        <br />
+        <select @onchange="OnselectChanged">
+            <option value="0">Select a Category</option>
+            @foreach (var item in Categories)
+            {
+                <option value="@item.CategoryId">@item.Name</option>
+            }
+        </select>   
     </div>
    
     <div class="form-group">
@@ -40,41 +39,5 @@
         <InputTextArea id="description" class="form-control" @bind-Value="@NewProduct.Description" />
     </div>
     <p></p>
-    <button type="submit" class="btn btn-primary">Criar</button>
+    <button type="submit" class="btn btn-primary">Create</button>
 </EditForm>
-
-
-@code {
-
-
-    List<Product> ProductsData { get; set; } = new();
-
-    Product NewProduct { get; set; } = new Product();
-
-    public ProductsCategory Category { get; set; }
-
-    public IList<SelectOption> Options { get; set; }
-
-   
-    protected override void OnInitialized()
-    {
-        Options = EnumService.GetOptions<ProductsCategory>();
-        base.OnInitialized();
-    }
-
-
-    private async Task CreateNewProduct()
-    {
-        try
-        {
-            var response = await WebServiceAPI.CreateProduct(NewProduct);
-            ProductsData.Add(response);
-            NewProduct = new Product();
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex);
-            throw;
-        }
-    }
-}

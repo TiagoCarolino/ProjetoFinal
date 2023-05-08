@@ -27,7 +27,7 @@ namespace ProjetoFinalAPI.Handlers
             {
                 try
                 {
-                    await product.AddAsync(request.product);
+                    product.Entry(request.product).State = Microsoft.EntityFrameworkCore.EntityState.Added;
                     await _dataContext.SaveChangesAsync(cancellationToken);
 
                     return request.product;

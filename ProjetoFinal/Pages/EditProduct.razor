@@ -3,7 +3,7 @@
 @using ProjetoFinalAPI.Models;
 @using Interfaces;
 @using System.Diagnostics;
-@using ProjetoFinal.Services;
+
 
 @inject IWebServiceAPI WebServiceAPI
 @inject NavigationManager NavigationManager
@@ -26,18 +26,15 @@
             <InputNumber id="price" class="form-control" @bind-Value="@ProductData.Price" step="0.01" />
         </div>
         <div class="form-group">
-            <label for="category">Category:</label>
-            <br>
-            <select bind="Category">
-                @foreach (var o in Options)
+            <label for="categories">Category:</label>
+            <br />
+            <select @onchange="OnselectChanged">
+                <option value="0">Select a Category</option>
+                @foreach (var item in Categories)
                 {
-                    <option value="@o.Value">@o.Value</option>
+                    <option value="@item.CategoryId">@item.Name</option>
                 }
             </select>
-        </div>
-        <div class="form-group">
-            <label for="price">Quantity:</label>
-            <InputNumber id="quantitystock" class="form-control" @bind-Value="@ProductData.QuantityStock" />
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
@@ -49,58 +46,3 @@
 
 }
 
-@code {
-
-    [Parameter]
-    public int Id { get; set; }
-
-    Product ProductData { get; set; } = new();
-
-    public ProductsCategory Category { get; set; }
-
-    public IList<SelectOption> Options { get; set; }
-
-
-    protected override async Task OnInitializedAsync()
-    {
-
-        Options = EnumService.GetOptions<ProductsCategory>();
-        base.OnInitialized();
-
-        try
-        {
-            ProductData = await WebServiceAPI.GetProduct(Id);
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex);
-            throw;
-        }
-    }
-
-    public async void UpdateProduct()
-    {
-        try
-        {
-            var newProduct = new Product
-                {
-
-                    Name = ProductData.Name,
-                    Description = ProductData.Description,
-                    Category = ProductData.Category,
-                    QuantityStock = ProductData.QuantityStock,
-                    Price = ProductData.Price,
-                    IsDeleted = ProductData.IsDeleted
-                };
-
-            var response = await WebServiceAPI.UpdateProduct(newProduct, Id);
-
-
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex);
-            throw;
-        }
-    }
-}

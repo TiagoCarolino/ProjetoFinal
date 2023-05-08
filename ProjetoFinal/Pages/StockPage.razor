@@ -1,0 +1,21 @@
+﻿@page "/createstock"
+
+<h3>StockPage</h3>
+
+<EditForm Model ="StockModel" OnValidSubmit="OnCreateStock">
+    <div class="mb-3">
+        <label for="name" class="form-label">Product ID:</label>
+        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Product Id" @bind-value="StockModel.ProductId" />
+    </div>
+    <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity:</label>
+        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Quantity" @bind-value="StockModel.Quantity" />
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Created At:</label>
+        <input type="datetime" class="form-control" id="exampleFormControlInput1" placeholder="Created At" @bind-value="StockModel.CreatedAt" />
+    </div>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Create</button>
+
+</EditForm>
