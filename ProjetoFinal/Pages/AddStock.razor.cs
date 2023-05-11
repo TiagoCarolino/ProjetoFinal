@@ -4,7 +4,7 @@ using ProjetoFinalAPI.Models;
 
 namespace ProjetoFinal.Pages
 {
-    public partial class StockPage
+    public partial class AddStock
     {
         Stock StockModel { get; set; } = new();
         [Inject] IWebServiceAPI WebServiceAPI { get; set; }

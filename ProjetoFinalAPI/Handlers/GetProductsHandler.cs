@@ -3,6 +3,7 @@ using ProjetoFinalAPI.Data;
 using ProjetoFinalAPI.Models;
 using ProjetoFinalAPI.Queries;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProjetoFinalAPI.Handlers
 {
@@ -21,25 +22,17 @@ namespace ProjetoFinalAPI.Handlers
 
         public Task<List<Product>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
-            var query = _dataContext.Products.Skip(request.Page ?? request.PageDefault).Take(request.PageSize ?? request.PageSizeDefault).AsQueryable();
-
+            var query = _dataContext.Products
+                .Skip(request.Page ?? request.PageDefault)
+                .Take(request.PageSize ?? request.PageSizeDefault)
+                .Include(x => x.Category)
+                .AsQueryable();
+            
 
             if (!string.IsNullOrEmpty(request.Search))
             {
                 query = query.Where(x => x.Name.Contains(request.Search) || x.Description.Contains(request.Search));
             }
-
-            var handMapped = query.Select(x => new Product
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                IsDeleted = x.IsDeleted,
-                CategoryId= x.CategoryId,
-                Price = x.Price
-            }).ToList();
-
-            var autoMapped = _mapper.Map<List<Product>>(query);
 
             return Task.FromResult(query.ToList());
         }
