@@ -9,6 +9,8 @@
 
 <h3>CreateProduct</h3>
 
+<ModalComponent @ref=@Modal Message=@Message></ModalComponent>
+
 <EditForm Model="@NewProduct" OnValidSubmit="CreateNewProduct">
     <DataAnnotationsValidator />
     <ValidationSummary />

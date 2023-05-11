@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using ProjetoFinal.Shared;
 using ProjetoFinalAPI.Models;
 using System.Diagnostics;
 
@@ -12,6 +13,10 @@ namespace ProjetoFinal.Pages
         Product ProductData { get; set; } = new();
 
         private List<Category> Categories { get; set; } = new();
+
+        private string Message { get; set; }
+
+        ModalComponent? Modal { get; set; } = new();
 
 
         protected override async Task OnInitializedAsync()
@@ -50,6 +55,14 @@ namespace ProjetoFinal.Pages
                 };
 
                 var response = await WebServiceAPI.UpdateProduct(newProduct, Id);
+
+                if (response is not null)
+                {
+                    Message = $"Product {response.Name} data was sucessfully Updated";
+                    Modal.Message = Message;
+                    Modal.Title = "Success";
+                    Modal?.OpenModal();
+                }
 
 
             }

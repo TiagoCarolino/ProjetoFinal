@@ -12,7 +12,6 @@ namespace ProjetoFinal.Pages
         {
             try
             {
-
                 var response = await WebServiceAPI.GetProducts();
                 ProductsData = response.Where(p => !p.IsDeleted).ToList();
             }

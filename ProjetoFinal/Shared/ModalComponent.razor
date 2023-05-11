@@ -1,0 +1,55 @@
+﻿@inject NavigationManager NavigationManager
+
+<div class="modal-dialog" style="display:@ModalDisplay; z-index:1080">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">@Title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            @Message
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @onclick="() => CloseModal()">Close</button>
+            <button type="button" class="btn btn-primary" @onclick="() => ProductPage()">Save changes</button>
+        </div>
+    </div>
+</div>
+
+@if (Backdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+    private string? ModalDisplay { get; set; } = "none";
+
+    [Parameter]
+    public string? Message { get; set; }
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    bool Backdrop { get; set; }
+
+    public void OpenModal()
+    {
+        ModalDisplay = "block";
+
+        Backdrop = true;
+
+        StateHasChanged();
+    }
+    public void CloseModal()
+    {
+        ModalDisplay = "none";
+
+        Backdrop = false;
+
+        StateHasChanged();
+    }
+    private void ProductPage()
+    {
+        NavigationManager.NavigateTo($"/products");
+    }
+}
