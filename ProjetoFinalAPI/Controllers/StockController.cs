@@ -8,11 +8,9 @@ namespace ProjetoFinalAPI.Controllers
 {
     public class StockController : Controller
     {
-        public class OrderController : Controller
-        {
             IMediator Mediator;
 
-            public OrderController(IMediator mediator)
+            public StockController(IMediator mediator)
             {
                 Mediator = mediator;
             }
@@ -39,4 +37,4 @@ namespace ProjetoFinalAPI.Controllers
 
         }
     }
-}
+
