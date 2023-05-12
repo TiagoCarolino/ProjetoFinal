@@ -9,33 +9,31 @@
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="products">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Products
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/createproduct">
-                <span class="oi oi-phone" aria-hidden="true"></span>Create Product
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/createorder">
-                <span class="oi oi-phone" aria-hidden="true"></span>Create Order
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/createstock">
-                <span class="oi oi-phone" aria-hidden="true"></span>Stock
-            </NavLink>
-        </div>
-    </nav>
+    <Collapse >
+        <CollapseItems>
+            <CollapseItem Text="Products">
+                <NavLink class="nav-link" href="products">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Products
+                </NavLink>
+                <p />
+                <NavLink class="nav-link" href="/createproduct">
+                    <span class="oi oi-phone" aria-hidden="true"></span>Create Product
+                </NavLink>
+            </CollapseItem>
+            <CollapseItem Text="Order">
+                <NavLink class="nav-link" href="/createorder">
+                    <span class="oi oi-phone" aria-hidden="true"></span>Create Order
+                </NavLink>
+            </CollapseItem>
+            <CollapseItem Text="Stock">
+                <NavLink class="nav-link" href="/createstock">
+                    <span class="oi oi-phone" aria-hidden="true"></span>Create Stock
+                </NavLink>
+            </CollapseItem>
+        </CollapseItems>
+    </Collapse>
+    <ConsoleLogger />
+
 </div>
 
 

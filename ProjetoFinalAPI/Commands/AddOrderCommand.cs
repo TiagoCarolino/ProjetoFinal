@@ -23,7 +23,7 @@ namespace ProjetoFinalAPI.Commands
 
                 try
                 {
-                    context.Add(request.Order).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                    context.Entry(request.Order).State = Microsoft.EntityFrameworkCore.EntityState.Added;
                     await _dataContext.SaveChangesAsync(cancellationToken);
                     return request.Order;
                 }
