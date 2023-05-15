@@ -21,14 +21,28 @@ namespace ProjetoFinal.Interfaces
         [Delete("/products/{id}")]
         public Task DeleteProduct(int id);
 
+
+
         [Get("/categories")]
         public Task<List<Category>> GetCategories();
 
-        [Post("/orders")]
-        public Task<Order> AddOrder([Body] Order order);
+
+        [Get("/stats")]
+        public Task<List<Dashboard>> GetStats();
+
+
+        [Get("/stocks")]
+        public Task<List<Stock>> GetProductStocks(int ProductId, bool IsDeleted = true, int? Page = null, int? PageSize = null);
+
+        [Get("/stocks")]
+        public Task<List<Stock>> GetStocks(bool IsDeleted = true, int? Page = null, int? PageSize = null);
 
         [Post("/stocks")]
-        public Task AddStock([Body] Stock stock);
+        public Task<Stock> CreateStock([Body] Stock newStock);
+
+
+        [Delete("/stocks/{id}")]
+        public Task DeleteStock(int id);
 
     }
 }

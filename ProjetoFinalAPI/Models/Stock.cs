@@ -10,6 +10,8 @@ namespace ProjetoFinalAPI.Models
 
         [ForeignKey(nameof(ProductId))]
         public Product? Product { get; set; }
+
+        public bool IsEntry { get; set; }
         public bool IsDeleted { get; set; }
 
         public DateTime CreatedAt { get; set; }

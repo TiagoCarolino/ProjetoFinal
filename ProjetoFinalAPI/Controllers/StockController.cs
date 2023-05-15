@@ -15,26 +15,35 @@ namespace ProjetoFinalAPI.Controllers
                 Mediator = mediator;
             }
 
-            [HttpPost("stocks")]
-            public async Task<IActionResult> AddStock([FromBody] Stock stock)
+        [HttpGet("stocks")]
+        public async Task<IActionResult> GetStocks([FromQuery] StockRequest request)
+        {
+            var result = await Mediator.Send(new GetStocksQuery
             {
-                await Mediator.Send(new AddStockCommand
-                {
-                    Stock = stock
-
-                });
-
-                return Ok();
-            }
-
-            [HttpGet("stockstatus")]
-            public async Task<IActionResult> GetStockStatus()
-            {
-                var result = await Mediator.Send(new GetStockStatusQuery());
-
-                return Ok(result);
-            }
-
+                ProductId = request.ProductId,
+                IsDeleted = request.IsDeleted,
+                Page = request.Page,
+                PageSize = request.PageSize
+            });
+            return Ok(result);
         }
+
+        [HttpPost("stocks")]
+        public async Task<IActionResult> AddStock([FromBody] Stock stock)
+        {
+            var result = await Mediator.Send(new AddStockCommand(stock));
+            return Ok(result);
+        }
+
+        [HttpDelete("stocks/{id}")]
+        public async Task<IActionResult> DeleteStock(int id)
+        {
+            await Mediator.Send(new DeleteStockCommand(id));
+            return Ok();
+        }
+
+
+
+    }
     }
 

@@ -8,18 +8,20 @@ namespace ProjetoFinalAPI.Handlers
 {
     public class GetCategoriesHandler : IRequestHandler<GetCategoriesQuery, List<Category>>
     {
-       private readonly IMediator _mediator;
-       private readonly IDataContext _dataContext;
-        public GetCategoriesHandler(IDataContext dataContext, IMediator mediator)
+        IDataContext _dataContext;
+        IMapper _mapper;
+        public GetCategoriesHandler(IDataContext dataContext, IMapper mapper)
         {
             _dataContext = dataContext;
-            _mediator = mediator;
+            _mapper = mapper;
         }
-        public async Task<List<Category>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
+        public Task<List<Category>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
         {
-            var query = _dataContext.Categories.ToList();
+            var query = _dataContext.Categories.AsQueryable();
 
-            return query;
+            var autoMapped = _mapper.Map<List<Category>>(query);
+
+            return Task.FromResult(autoMapped);
         }
     }
 

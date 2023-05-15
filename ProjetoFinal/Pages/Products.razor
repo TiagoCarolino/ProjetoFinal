@@ -21,7 +21,6 @@ else
                 <th>Name</th>
                 <th>Description</th>
                 <th>Category</th>
-                <th>IsDeleted</th>
                 <th>Price</th>
             </tr>
         </thead>
@@ -32,7 +31,6 @@ else
                     <td>@product.Name</td>
                     <td>@product.Description</td>
                     <td>@product.Category.ToString()</td>
-                    <td>@product.IsDeleted</td>
                     <td>@product.Price</td>
                     <td>
                         <button class="btn btn-danger" @onclick="() => DeleteProduct(product.Id)">Delete</button>

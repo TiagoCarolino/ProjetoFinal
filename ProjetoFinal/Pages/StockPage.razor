@@ -1,0 +1,40 @@
+﻿@page "/stocks"
+
+@using ProjetoFinal.Interfaces;
+@inject IWebServiceAPI WebServiceAPI
+
+
+
+<h3>Stocks</h3>
+
+@if (StocksData == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stock in StocksData)
+            {
+                <tr>
+                    <td>@stock.Product.Name</td>
+                    <td>@(stock.IsEntry ? "Stock" : "Stock Sold")</td>
+                    <td>@stock.Quantity</td>
+                    <td>@stock.CreatedAt.ToString("dddd, dd MMMM yyyy HH:mm").ToUpper()</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="() => DeleteStock(stock)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
