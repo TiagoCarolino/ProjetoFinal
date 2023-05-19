@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label for="price">Quantity:</label>
-            <InputNumber id="quantity" class="form-control" @bind-Value="@ProductData.Quantity"/>
+            <InputNumber id="quantity" class="form-control" @bind-Value="@ProductData.Quantity" />
         </div>
         <div class="form-group">
             <label for="categories">Category:</label>
@@ -49,20 +49,38 @@
         <p></p>
         <button type="submit" class="btn btn-primary">Update</button>
     </EditForm>
-    <br />
-
+    <hr />
+    <h3>Stock Data</h3>
     @if (ProductData.IsDeleted == false)
     {
         <input type="number" min="0" id="input" @bind-value="stockQuantity" />
         <button class="btn btn-primary" @onclick="() => AddStock(true)">Buy Stock</button>
         <button class="btn btn-danger" @onclick="() => AddStock(false)">Sell Stock</button>
     }
-    <br />
-
+    
+    <p></p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
     @foreach (var stock in productStocks)
     {
-        <p>@(stock.IsEntry ? "Stock" : "Stock Sold"): @stock.Quantity <button class="delete-btn" @onclick="() => DeleteStock(stock)">X</button></p>
+                <tr>
+                    <td>@(stock.IsEntry ? "Stock Bought" : "Stock Sold")</td>
+                    <td>@stock.Quantity</td>
+                    <td>@stock.CreatedAt.ToString("dddd, dd MMMM yyyy HH:mm").ToUpper()</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="() => DeleteStock(stock)">Delete</button>
+                    </td>
+                </tr>
     }
+        </tbody>
+    </table>
 
 }
 

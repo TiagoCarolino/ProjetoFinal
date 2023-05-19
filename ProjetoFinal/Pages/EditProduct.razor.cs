@@ -12,6 +12,8 @@ namespace ProjetoFinal.Pages
 
         Product ProductData { get; set; } = new();
 
+        Stock Stock { get; set; } = new();
+
         int stockQuantity { get; set; } = 0;
 
         private List<Category> Categories { get; set; } = new();

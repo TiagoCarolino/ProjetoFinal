@@ -27,7 +27,7 @@ else
             {
                 <tr>
                     <td>@stock.Product.Name</td>
-                    <td>@(stock.IsEntry ? "Stock" : "Stock Sold")</td>
+                    <td>@(stock.IsEntry ? "Stock Bought" : "Stock Sold")</td>
                     <td>@stock.Quantity</td>
                     <td>@stock.CreatedAt.ToString("dddd, dd MMMM yyyy HH:mm").ToUpper()</td>
                     <td>
