@@ -1,0 +1,25 @@
+﻿@page "/dashboard"
+
+@using Interfaces;
+@using System.Diagnostics;
+@inject IWebServiceAPI WebServiceAPI
+
+
+<h3>Dashboard</h3>
+<p></p>
+
+<h2>Top 5 Categories with more Products:</h2>
+<p></p>
+@foreach (var (category, numproducts) in categoryByProducts)
+{
+    <p>@category.Name : @numproducts</p>
+}
+
+<h2>Top AveragePrice by Category:</h2>
+<p></p>
+@foreach (var (category, avgPrice) in categoryByProducts)
+{
+    <p>@category.Name : @avgPrice.ToString("0.00 €")</p>
+}
+
+

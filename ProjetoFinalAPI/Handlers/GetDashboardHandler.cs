@@ -11,6 +11,11 @@ namespace ProjetoFinalAPI.Handlers
         IDataContext _dataContext;
 
         IMapper _mapper;
+        public GetDashboardHandler(IDataContext dataContext, IMapper mapper)
+        {
+            _dataContext = dataContext;
+            _mapper = mapper;
+        }
 
         public Task<Dashboard> Handle(GetStatsQuery request, CancellationToken cancellationToken)
         {
@@ -25,6 +30,7 @@ namespace ProjetoFinalAPI.Handlers
             var categories = _mapper.Map<List<Category>>(categoryQuery);
 
             var Dashboard = new Dashboard();
+
             Dashboard.statsCategories = new List<Tuple<Category, int, decimal>>();
 
             if (categories != null)

@@ -28,7 +28,7 @@ namespace ProjetoFinal.Interfaces
 
 
         [Get("/stats")]
-        public Task<List<Dashboard>> GetStats();
+        public Task<Dashboard> GetStats();
 
 
         [Get("/stocks")]
