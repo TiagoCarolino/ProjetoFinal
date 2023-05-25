@@ -7,10 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazor.Bootstrap" Version="1.7.3" />
-    <PackageReference Include="BlazorStrap" Version="5.1.102" />
-    <PackageReference Include="BootstrapBlazor" Version="7.6.2" />
-    <PackageReference Include="BootstrapBlazor.FontAwesome" Version="7.4.2" />
+    <PackageReference Include="ChartJs.Blazor" Version="1.1.0" />
+    <PackageReference Include="MudBlazor" Version="6.2.5" />
     <PackageReference Include="Refit" Version="6.3.2" />
     <PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
     <PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />

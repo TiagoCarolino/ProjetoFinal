@@ -1,0 +1,43 @@
+﻿@page "/editproductstock/{id:int}"
+@using ProjetoFinal.Interfaces;
+
+@inject IWebServiceAPI WebServiceAPI
+
+
+
+<h2>ProductStock Data</h2>
+
+<br />
+<p>@ProductData.Name : @ProductData.Quantity</p>
+<br />
+
+@if (ProductData.IsDeleted == false)
+{
+    <input type="number" min="0" id="input" @bind-value="stockQuantity" />
+    <button class="btn btn-primary" @onclick="() => AddStock(true)">Buy Stock</button>
+    <button class="btn btn-danger" @onclick="() => AddStock(false)">Sell Stock</button>
+}
+
+<p></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stock in productStocks)
+        {
+            <tr>
+                <td>@(stock.IsEntry ? "Stock Bought" : "Stock Sold")</td>
+                <td>@stock.Quantity</td>
+                <td>@stock.CreatedAt.ToString("dddd, dd MMMM yyyy HH:mm").ToUpper()</td>
+                <td>
+                    <button class="btn btn-danger" @onclick="() => DeleteStock(stock)">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

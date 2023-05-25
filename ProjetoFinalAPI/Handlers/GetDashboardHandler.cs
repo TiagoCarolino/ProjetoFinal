@@ -39,8 +39,6 @@ namespace ProjetoFinalAPI.Handlers
 
                 foreach (var category in categories)
                 {
-
-
                     var filteredQuery = productsQuery.Where(x => x.CategoryId == category.CategoryId);
                     var avg_price = filteredQuery.Average(x => (Decimal?)x.Price);
                     Dashboard.statsCategories.Add(Tuple.Create(category, filteredQuery.Count(), avg_price ?? -Decimal.One));

@@ -9,38 +9,26 @@
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <Collapse >
-        <CollapseItems>
-            <CollapseItem Text="Products">
-                <NavLink class="nav-link" href="/products">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span> Products
-                </NavLink>
-                <p />
-                <NavLink class="nav-link" href="/createproduct">
-                    <span class="oi oi-phone" aria-hidden="true"></span>Create Product
-                </NavLink>
-            </CollapseItem>
 
-            <CollapseItem Text="Stock">
-                <NavLink class="nav-link" href="/stocks">
-                    <span class="oi oi-phone" aria-hidden="true"></span>Stocks
-                </NavLink>
-            </CollapseItem>
-            <CollapseItem Text="Dashboard">
-                <NavLink class="nav-link" href="/dashboard">
-                    <span class="oi oi-phone" aria-hidden="true"></span>Dashboard
-                </NavLink>
-            </CollapseItem>
-        </CollapseItems>
-    </Collapse>
-    <ConsoleLogger />
-
+    <MudPaper Width="250px" Class="py-3" Elevation="0">
+        <MudNavMenu>
+            <MudNavGroup Title="Products" @bind-Expanded=_isExpanded>
+                <MudNavLink Href="/products" Icon="@Icons.Material.Filled.Storage">Products Data</MudNavLink>
+                <MudNavLink Href="/createproduct" Icon="@Icons.Material.Filled.Phone">Create Products</MudNavLink>
+            </MudNavGroup>
+            <MudNavLink Href="/stocks" Icon="@Icons.Material.Filled.Receipt">Stocks</MudNavLink>
+            <MudNavLink Href="/dashboard" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
+        </MudNavMenu>
+    </MudPaper>
+   
 </div>
 
 
 
 @code {
     private bool collapseNavMenu = true;
+
+    bool _isExpanded = false;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 

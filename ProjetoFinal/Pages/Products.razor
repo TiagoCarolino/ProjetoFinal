@@ -1,13 +1,16 @@
 ﻿@page "/products"
 
+@using Microsoft.Extensions.Localization;
 @using ProjetoFinalAPI.Models;
 @using Interfaces;
 @using System.Diagnostics;
+@using System.Net.Http.Json
 
+
+@inject HttpClient httpClient
 @inject IWebServiceAPI WebServiceAPI
 @inject NavigationManager NavigationManager
 
-<h3>Products</h3>
 
 @if (ProductsData == null)
 {
@@ -15,30 +18,37 @@
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in ProductsData)
-            {
-                <tr>
-                    <td>@product.Name</td>
-                    <td>@product.Description</td>
-                    <td>@product.Category.ToString()</td>
-                    <td>@product.Price</td>
-                    <td>
-                        <button class="btn btn-danger" @onclick="() => DeleteProduct(product.Id)">Delete</button>
-                        <button class="btn btn-primary" @onclick="() => EditProduct(product.Id)">Edit</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+   
+    <MudTable Items="@ProductsData" Dense="@dense" Hover="@hover" Bordered="@bordered" Striped="@striped" Filter="new Func<Product,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
+        <ToolBarContent>
+            <MudText Typo="Typo.h6">Products</MudText>
+            <MudSpacer />
+            <MudTextField @bind-Value="searchString1" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>Name</MudTh>
+            <MudTh>Description</MudTh>
+            <MudTh>Category</MudTh>
+            <MudTh>Quantity</MudTh>
+            <MudTh>Price</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Description">@context.Description</MudTd>
+            <MudTd DataLabel="Category">@context.Category.ToString()</MudTd>
+            <MudTd DataLabel="Quantity">@context.Quantity</MudTd>
+            <MudTd DataLabel="Price">@context.Price</MudTd>
+            <MudTd>
+                <MudButton Variant="Variant.Filled" @onclick="() => DeleteProduct(context.Id)" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Error" Size=" Size.Small">Delete</MudButton>
+                <MudButton Variant="Variant.Filled" @onclick="() => EditProduct(context.Id)" StartIcon="@Icons.Material.Filled.Edit" Color="Color.Info" Size="Size.Small">Edit</MudButton>
+                <MudButton Variant="Variant.Filled" @onclick="() => EditStockProduct(context.Id)" StartIcon="@Icons.Material.Filled.Receipt" Color="Color.Secondary" Size="Size.Small">Edit Stock</MudButton>
+            </MudTd>
+        </RowTemplate>
+
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+    </MudTable>
+
 }
 

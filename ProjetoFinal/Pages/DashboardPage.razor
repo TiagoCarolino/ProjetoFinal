@@ -2,6 +2,12 @@
 
 @using Interfaces;
 @using System.Diagnostics;
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.Util
+@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.PieChart
+
+@inject IJSRuntime jsRuntime
 @inject IWebServiceAPI WebServiceAPI
 
 
@@ -17,9 +23,8 @@
 
 <h2>Top AveragePrice by Category:</h2>
 <p></p>
-@foreach (var (category, avgPrice) in categoryByProducts)
+@foreach (var (category, avgPrice) in categoryByAvgPrice)
 {
-    <p>@category.Name : @avgPrice.ToString("0.00 €")</p>
+    <p>@category.Name : @avgPrice.ToString("0.00 ")</p>
 }
-
 

@@ -49,7 +49,7 @@ namespace ProjetoFinal.Pages
 
                 if (response is not null)
                 {
-                    Message = $"Product {response.Name} data was sucessfully Created";
+                    Message = $"Product {response.Name}  was sucessfully Created";
                     Modal.Message = Message;
                     Modal.Title = "Success";
                     Modal?.OpenModal();
