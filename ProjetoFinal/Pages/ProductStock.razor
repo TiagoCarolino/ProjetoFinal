@@ -8,7 +8,8 @@
 <h2>ProductStock Data</h2>
 
 <br />
-<p>@ProductData.Name : @ProductData.Quantity</p>
+<p><strong>Product: </strong>@ProductData.Name | <strong>Quantity: </strong>@ProductData.Quantity</p>
+
 <br />
 
 @if (ProductData.IsDeleted == false)
@@ -41,3 +42,5 @@
         }
     </tbody>
 </table>
+
+<ModalComponent @ref=@Modal Message=@Message></ModalComponent>

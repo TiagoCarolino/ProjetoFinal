@@ -1,12 +1,13 @@
 ﻿
-<div class="top-row ps-3 navbar navbar-dark">
+@*<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">ProjetoFinal</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-</div>
+</div>*@
+
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
 
@@ -14,7 +15,7 @@
         <MudNavMenu>
             <MudNavGroup Title="Products" @bind-Expanded=_isExpanded>
                 <MudNavLink Href="/products" Icon="@Icons.Material.Filled.Storage">Products Data</MudNavLink>
-                <MudNavLink Href="/createproduct" Icon="@Icons.Material.Filled.Phone">Create Products</MudNavLink>
+                <MudNavLink Href="/createproduct" Icon="@Icons.Material.Filled.Aod">Create Products</MudNavLink>
             </MudNavGroup>
             <MudNavLink Href="/stocks" Icon="@Icons.Material.Filled.Receipt">Stocks</MudNavLink>
             <MudNavLink Href="/dashboard" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
@@ -23,6 +24,11 @@
    
 </div>
 
+<style>
+    .mud-paper.mud-elevation-0.py-3 {
+        background-color: transparent !important;
+        color: white !important;
+    }</style>
 
 
 @code {

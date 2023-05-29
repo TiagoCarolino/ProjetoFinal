@@ -10,7 +10,6 @@
 
 <h3>EditProduct</h3>
 
-<ModalComponent @ref=@Modal Message=@Message></ModalComponent>
 
 @if (ProductData is not null)
 {
@@ -18,40 +17,37 @@
         <DataAnnotationsValidator />
         <ValidationSummary />
 
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <InputText id="name" class="form-control" @bind-Value="@ProductData.Name" />
-        </div>
-
-        <div class="form-group">
-            <label for="price">Price:</label>
-            <InputNumber id="price" class="form-control" @bind-Value="@ProductData.Price" step="0.01" />
-        </div>
-        <div class="form-group">
-            <label for="price">Quantity:</label>
-            <InputNumber id="quantity" class="form-control" @bind-Value="@ProductData.Quantity" />
-        </div>
-        <div class="form-group">
-            <label for="categories">Category:</label>
-            <br />
-            <select @onchange="OnselectChanged">
-                <option value="0">Select a Category</option>
-                @foreach (var item in Categories)
-                {
-                    <option value="@item.CategoryId">@item.Name</option>
-                }
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="description">Description:</label>
-            <InputTextArea id="description" class="form-control" @bind-Value="@ProductData.Description" />
-        </div>
-        <p></p>
-        <button type="submit" class="btn btn-primary">Update</button>
-        <button type="submit" @onclick="() => EditStockProduct(ProductData.Id)" class="btn btn-secondary">Edit Stock</button>
+        <MudGrid>
+            <MudItem xs="12" sm="7">
+                <MudCard>
+                    <MudCardContent>
+                        <MudTextField Label="Name" HelperText="Max. 20 characters"
+                        @bind-Value="ProductData.Name" />
+                        <MudNumericField Label="Price" Class="mt-3"
+                        @bind-Value="ProductData.Price" />
+                        <div class="form-group">
+                            <label for="categories">Category:</label>
+                            <br />
+                            <select @onchange="OnselectChanged">
+                                <option value="0">Select a Category</option>
+                                @foreach (var item in Categories)
+                                {
+                                    <option value="@item.CategoryId">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <MudTextField Label="Description" Class="mt-3"
+                        @bind-Value="ProductData.Description" />
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" >Update</MudButton>
+                        <MudButton ButtonType="ButtonType.Button" @onclick="() => EditStockProduct(ProductData.Id)" Variant="Variant.Filled" Color="Color.Error">EditStock</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
     </EditForm>
-    <hr />
+<ModalComponent @ref=@Modal Message=@Message></ModalComponent>
    
-
 }
 

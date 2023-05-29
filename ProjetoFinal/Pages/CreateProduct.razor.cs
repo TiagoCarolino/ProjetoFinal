@@ -16,7 +16,8 @@ namespace ProjetoFinal.Pages
 
         private List<Category> Categories { get; set; } = new();
 
-        private string Message { get; set; }
+        private string ? Message { get; set; }
+
 
         ModalComponent? Modal { get; set; } = new();
 
@@ -68,5 +69,6 @@ namespace ProjetoFinal.Pages
             StateHasChanged();
 
         }
+
     }
 }

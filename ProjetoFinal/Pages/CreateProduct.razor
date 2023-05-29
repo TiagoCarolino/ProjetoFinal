@@ -9,12 +9,40 @@
 
 <h3>CreateProduct</h3>
 
-<ModalComponent @ref=@Modal Message=@Message></ModalComponent>
 
 <EditForm Model="@NewProduct" OnValidSubmit="CreateNewProduct">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
+    <MudGrid>
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField Label="Name" HelperText="Max. 20 characters"
+                    @bind-Value="NewProduct.Name"/>
+                    <MudNumericField Label="Price" Class="mt-3"
+                    @bind-Value="NewProduct.Price"/>
+                    <div class="form-group">
+                        <label for="categories">Category:</label>
+                        <br />
+                        <select @onchange="OnselectChanged">
+                            <option value="0">Select a Category</option>
+                            @foreach (var item in Categories)
+                            {
+                                <option value="@item.CategoryId">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <MudTextField Label="Description" Class="mt-3"
+                    @bind-Value="NewProduct.Description"/>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Create</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+@*
     <div class="form-group">
         <label for="name">Name:</label>
         <InputText id="name" class="form-control" @bind-Value="@NewProduct.Name" />
@@ -41,5 +69,7 @@
         <InputTextArea id="description" class="form-control" @bind-Value="@NewProduct.Description" />
     </div>
     <p></p>
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Create</button>*@
 </EditForm>
+<ModalComponent @ref=@Modal Message=@Message></ModalComponent>
+
