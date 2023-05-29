@@ -6,12 +6,7 @@ namespace ProjetoFinal.Pages
 {
     public partial class StockPage
     {
-        List<Stock> StocksData { get; set; } = new List<Stock>();
-
-        int page = 0;
-
-        int pageSize = 10;
-
+        List<Stock> StocksData { get; set; } = new ();
 
         private bool dense = false;
         private bool hover = true;
@@ -40,7 +35,7 @@ namespace ProjetoFinal.Pages
 
             try
             {
-                StocksData = await WebServiceAPI.GetStocks(false, Page: page, PageSize: pageSize);
+                StocksData = await WebServiceAPI.GetStocks(false);
 
             }
             catch (Exception ex)

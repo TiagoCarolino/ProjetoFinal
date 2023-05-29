@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using ProjetoFinalAPI.Models;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -29,6 +28,8 @@ namespace ProjetoFinal.Pages
             if ($"{product.Price}".Contains(searchString))
                 return true;
             if ($"{product.Quantity}".Contains(searchString))
+                return true;
+            if ($"{product.Category.ToString()}".Contains(searchString))
                 return true;
             return false;
         }
