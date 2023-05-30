@@ -7,23 +7,22 @@
 @inject IWebServiceAPI WebServiceAPI
 @inject NavigationManager NavigationManager
 
-<h3>CreateProduct</h3>
 
 
 <EditForm Model="@NewProduct" OnValidSubmit="CreateNewProduct">
     <DataAnnotationsValidator />
     <ValidationSummary />
-
     <MudGrid>
         <MudItem xs="12" sm="7">
             <MudCard>
                 <MudCardContent>
+                    <h3>CreateProduct</h3>
                     <MudTextField Label="Name" Class="mt-3"
                     @bind-Value="NewProduct.Name"/>
                     <MudNumericField Label="Price" Class="mt-3"
                     @bind-Value="NewProduct.Price"/>
                     <p></p>
-                    <div class="form-group">
+                     <div class="form-group">
                         <label for="categories">Category:</label>
                         <select @onchange="OnselectChanged">
                             <option value="0">Select a Category</option>

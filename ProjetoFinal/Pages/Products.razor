@@ -21,12 +21,12 @@ else
    
     <MudTable Items="@ProductsData" Dense="@dense" Hover="@hover" Bordered="@bordered" Striped="@striped" Filter="new Func<Product,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
         <ToolBarContent>
-            <MudText Typo="Typo.h2">Products</MudText>
+            <MudText Typo="Typo.h4">Products</MudText>
             <MudSpacer />
             <MudTextField @bind-Value="searchString1" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
         </ToolBarContent>
         <HeaderContent>
-            <MudTh><strong>Name</strong></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.Name)"><strong>Name</strong></MudTableSortLabel></MudTh>
             <MudTh><strong>Description</strong></MudTh>
             <MudTh><strong>Category</strong></MudTh>
             <MudTh><strong>Quantity</strong></MudTh>

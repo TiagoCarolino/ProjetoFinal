@@ -14,9 +14,12 @@
 
 @if (ProductData.IsDeleted == false)
 {
-    <input type="number" min="0" id="input" @bind-value="stockQuantity" />
-    <button class="btn btn-primary" @onclick="() => AddStock(true)">Buy Stock</button>
-    <button class="btn btn-danger" @onclick="() => AddStock(false)">Sell Stock</button>
+    <div>
+    <MudNumericField @bind-Value="stockQuantity" Label="Stock Quantity"></MudNumericField>
+    <br />
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="() => AddStock(true)">Buy Stock</MudButton>
+    <MudButton Variant="Variant.Filled" Color="Color.Error" @onclick="() => AddStock(false)">Sell Stock</MudButton>
+    </div>
 }
 
 <p></p>
@@ -36,7 +39,7 @@
                 <td>@stock.Quantity</td>
                 <td>@stock.CreatedAt.ToString("dddd, dd MMMM yyyy HH:mm").ToUpper()</td>
                 <td>
-                    <button class="btn btn-danger" @onclick="() => DeleteStock(stock)">Delete</button>
+                    <MudButton Variant="Variant.Filled" Color="Color.Error" @onclick="() => DeleteStock(stock)">Delete</MudButton>
                 </td>
             </tr>
         }

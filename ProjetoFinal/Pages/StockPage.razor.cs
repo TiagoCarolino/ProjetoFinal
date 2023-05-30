@@ -29,7 +29,7 @@ namespace ProjetoFinal.Pages
                 return true;
             if ($"{stock.IsEntry}".Contains(searchString))
                 return true;
-            if ($"{stock.Quantity}".Contains(searchString))
+            if ($"{stock.Quantity}".Contains(searchString , StringComparison.OrdinalIgnoreCase))
                 return true;
             return false;
         }

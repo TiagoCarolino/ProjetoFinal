@@ -17,7 +17,7 @@ else
 {
     <MudTable Items="@StocksData" Dense="@dense" Hover="@hover" Bordered="@bordered" Striped="@striped" Filter="new Func<Stock,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
         <ToolBarContent>
-            <MudText Typo="Typo.h2">All Stocks</MudText>
+            <MudText Typo="Typo.h4">All Stocks</MudText>
             <MudSpacer />
             <MudTextField @bind-Value="searchString1" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
         </ToolBarContent>
