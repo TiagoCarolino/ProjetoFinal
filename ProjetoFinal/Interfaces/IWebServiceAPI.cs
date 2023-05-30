@@ -32,10 +32,10 @@ namespace ProjetoFinal.Interfaces
 
 
         [Get("/stocks")]
-        public Task<List<Stock>> GetProductStocks(int ProductId, bool IsDeleted = true, int? Page = null, int? PageSize = null);
+        public Task<List<Stock>> GetProductStocks(int ProductId, bool IsDeleted = true);
 
         [Get("/stocks")]
-        public Task<List<Stock>> GetStocks(bool IsDeleted = true, int? Page = null, int? PageSize = null);
+        public Task<List<Stock>> GetStocks(bool IsDeleted = true);
 
         [Post("/stocks")]
         public Task<Stock> CreateStock([Body] Stock newStock);

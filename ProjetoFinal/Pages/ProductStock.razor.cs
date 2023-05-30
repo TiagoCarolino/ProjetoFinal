@@ -25,7 +25,7 @@ namespace ProjetoFinal.Pages
 
         ModalComponent? Modal { get; set; } = new();
 
-        int page = 0;
+
         int pagesize = 10;
 
         protected override async Task OnInitializedAsync()
@@ -34,7 +34,7 @@ namespace ProjetoFinal.Pages
             try
             {
                 ProductData = await WebServiceAPI.GetProduct(Id);
-                productStocks = await WebServiceAPI.GetProductStocks(Id, false, Page: page, PageSize: pagesize);
+                productStocks = await WebServiceAPI.GetProductStocks(Id, false);
 
             }
             catch (Exception ex)

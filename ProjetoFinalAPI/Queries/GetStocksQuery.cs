@@ -12,6 +12,6 @@ namespace ProjetoFinalAPI.Queries
 
         public int PageDefault = 0;
 
-        public int PageSizeDefault = 50;
+        public int PageSizeDefault = 1000;
     }
 }

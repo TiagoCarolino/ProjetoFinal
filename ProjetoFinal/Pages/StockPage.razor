@@ -7,7 +7,7 @@
 
 
 
-<h3>Stocks</h3>
+
 
 @if (StocksData == null)
 {
@@ -15,21 +15,22 @@
 }
 else
 {
-  
     <MudTable Items="@StocksData" Dense="@dense" Hover="@hover" Bordered="@bordered" Striped="@striped" Filter="new Func<Stock,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
         <ToolBarContent>
-            <MudText Typo="Typo.h6">All Stocks</MudText>
+            <MudText Typo="Typo.h2">All Stocks</MudText>
             <MudSpacer />
             <MudTextField @bind-Value="searchString1" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
         </ToolBarContent>
         <HeaderContent>
-            <MudTh>Name</MudTh>
-            <MudTh>Type</MudTh>
-            <MudTh>Quantity</MudTh>
-            <MudTh>Date</MudTh>
+            <MudTh><strong>Name</strong></MudTh>
+            <MudTh><strong>Category</strong></MudTh>
+            <MudTh><strong>Type</strong></MudTh>
+            <MudTh><strong>Quantity</strong></MudTh>
+            <MudTh><strong>Date</strong></MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Name">@context.Product.Name</MudTd>
+            <MudTd DataLabel="Category">@context.Product.Category.ToString()</MudTd>
             <MudTd DataLabel="Type">@(context.IsEntry ? "Stock Bought" : "Stock Sold")</MudTd>
             <MudTd DataLabel="Quantity">@context.Quantity</MudTd>
             <MudTd DataLabel="Date">@context.CreatedAt.ToString("dddd, dd MMMM yyyy HH:mm").ToUpper()</MudTd>
